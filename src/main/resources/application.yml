@@ -1,0 +1,124 @@
+# application.yml - data.sql 없이 실행
+spring:
+  profiles:
+    active: dev
+
+  messages:
+    basename: messages
+    encoding: UTF-8
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+  devtools:
+    restart:
+      exclude: generated/**,build/**,out/**
+
+server:
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        name: BOOKWORM_SESSION
+        http-only: true
+        secure: false
+        same-site: lax
+        max-age: 1800
+        path: /
+
+logging:
+  level:
+    com.bookworm: DEBUG
+    org.springframework.security: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: sessions, health, info
+  endpoint:
+    sessions:
+      enabled: true
+
+---
+# 개발 환경 설정 (MySQL) - data.sql 비활성화
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/bookworm?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useUnicode=true
+    username: bookworm_user
+    password: bookworm_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      pool-name: BookwormHikariPool
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          batch_size: 20
+
+    show-sql: true
+    defer-datasource-initialization: true
+
+  # ✅ data.sql 비활성화
+  sql:
+    init:
+      mode: never  # data.sql 실행하지 않음
+
+  security:
+    user:
+      name: 'admin'
+      password: 'admin123'
+
+---
+# 로컬 개발환경 (H2)
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  sql:
+    init:
+      mode: never  # H2에서도 data.sql 비활성화
+
+  security:
+    user:
+      name: 'admin'
+      password: 'admin123'

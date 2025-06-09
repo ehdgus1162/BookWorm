@@ -1,0 +1,89 @@
+/* ===== css/pages/signup.css ===== */
+/* 회원가입 페이지 전용 스타일 */
+
+.signup-page .header__title::after {
+    content: '';
+    /* 로그인과 달리 느낌표 없음 */
+}
+
+.signup-page .form__control,
+.signup-page .form__select {
+    border-width: 2px;
+    transition: var(--transition);
+}
+
+.signup-page .form__control:focus,
+.signup-page .form__select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 회원가입 폼 특별 스타일 */
+.signup-page .password-requirements {
+    background: var(--accent-color);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.signup-page .input-group {
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.signup-page .input-group:focus-within {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+}
+
+.signup-page .requirement {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) 0;
+}
+
+.signup-page .status-message {
+    font-weight: 500;
+}
+
+/* 애니메이션 */
+.signup-page .requirement {
+    transition: all 0.3s ease;
+}
+
+.signup-page .requirement.valid {
+    transform: scale(1.02);
+}
+
+.signup-page .form__group {
+    transition: var(--transition);
+}
+
+.signup-page .form__group:focus-within {
+    transform: translateY(-1px);
+}
+
+/* 반응형 개선 */
+@media (max-width: 768px) {
+    .signup-page .form__row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .signup-page .password-requirements {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xs);
+    }
+
+    .signup-page .input-group .btn {
+        font-size: var(--font-size-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .signup-page .brand__name {
+        font-size: var(--font-size-3xl);
+    }
+
+    .signup-page .header__title {
+        font-size: var(--font-size-2xl);
+    }
+}

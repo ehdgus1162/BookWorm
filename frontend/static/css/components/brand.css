@@ -1,0 +1,39 @@
+/* ===== css/components/brand.css ===== */
+.brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.brand__logo {
+    width: 250px;
+    height: 125px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-2xl);
+    font-weight: bold;
+}
+
+
+
+.brand__name {
+    font-size: var(--font-size-4xl);
+    font-weight: 300;
+    margin-bottom: var(--spacing-sm);
+}
+
+.brand__subtitle {
+    font-size: var(--font-size-lg);
+    font-weight: 300;
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.9;
+}
+
+.brand__prompt {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.8;
+}

@@ -1,0 +1,18 @@
+/* ===== css/layout/containers.css ===== */
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+}
+
+.container--full-height {
+    min-height: 100vh;
+}
+
+.container--centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

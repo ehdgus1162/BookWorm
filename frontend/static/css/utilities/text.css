@@ -1,0 +1,14 @@
+/* ===== css/utilities/text.css ===== */
+.u-text-center { text-align: center; }
+.u-text-left { text-align: left; }
+.u-text-right { text-align: right; }
+
+.u-text-primary { color: var(--text-primary); }
+.u-text-secondary { color: var(--text-secondary); }
+.u-text-muted { color: var(--text-muted); }
+
+.u-font-weight-light { font-weight: 300; }
+.u-font-weight-normal { font-weight: 400; }
+.u-font-weight-medium { font-weight: 500; }
+.u-font-weight-semibold { font-weight: 600; }
+.u-font-weight-bold { font-weight: 700; }

@@ -1,0 +1,10 @@
+/* ===== css/pages/login.css ===== */
+/* 로그인 페이지 전용 스타일 */
+.login-page .header__title::after {
+    content: ' !!';
+    color: var(--primary-color);
+}
+
+.login-page .form__control {
+    border-width: 2px;
+}

@@ -1,0 +1,117 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.bookworm'
+version = '0.0.1-SNAPSHOT'
+
+def querydslVersion = '5.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // === Lombok ===
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // === Spring ===
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    // DevTools 비활성화 (자동 재시작 방지)
+    // developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // === Test ===
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    runtimeOnly 'com.h2database:h2'
+
+    // === Jackson ===
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+    // === ModelMapper ===
+    implementation 'org.modelmapper:modelmapper:2.4.5'
+
+    // === MapStruct ===
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+    // === QueryDSL (Jakarta 호환) ===
+    implementation "com.querydsl:querydsl-jpa:${querydslVersion}:jakarta"
+    annotationProcessor "com.querydsl:querydsl-apt:${querydslVersion}:jakarta"
+
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+}
+
+// QueryDSL Q클래스 생성 경로 설정
+def generatedSourcesPath = layout.buildDirectory.dir("generated/sources/annotationProcessor/java/main").get().asFile
+
+sourceSets {
+    main {
+        java {
+            srcDirs += generatedSourcesPath
+        }
+    }
+}
+
+// 컴파일러 설정
+tasks.withType(JavaCompile).configureEach {
+    options.generatedSourceOutputDirectory.set(generatedSourcesPath)
+}
+
+// 테스트 설정
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// 런타임 JVM 옵션
+bootRun {
+    jvmArgs = [
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.base/java.time=ALL-UNNAMED",
+            "--add-opens", "java.base/java.util=ALL-UNNAMED",
+            "--add-opens", "java.base/java.nio=ALL-UNNAMED"
+    ]
+}
+
+// 테스트 실행시에도 동일한 JVM 옵션 적용
+test {
+    jvmArgs = [
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.base/java.time=ALL-UNNAMED",
+            "--add-opens", "java.base/java.util=ALL-UNNAMED",
+            "--add-opens", "java.base/java.nio=ALL-UNNAMED"
+    ]
+}
+
+// QueryDSL Q클래스 생성 태스크
+tasks.register('cleanGeneratedSources', Delete) {
+    delete generatedSourcesPath
+}
+
+// clean시 생성된 소스도 함께 삭제
+clean {
+    dependsOn 'cleanGeneratedSources'
+}

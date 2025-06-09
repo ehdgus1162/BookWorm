@@ -1,0 +1,40 @@
+/* ===== css/components/forms.css ===== */
+.form {
+    width: 100%;
+}
+
+.form__group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form__control {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    border-radius: var(--border-radius-lg);
+    border: 2px solid #e8e8e8;
+    background: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.form__control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: none;
+}
+
+.form__link {
+    display: block;
+    margin-bottom: var(--spacing-lg);
+}
+
+.form__link a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: var(--transition);
+}
+
+.form__link a:hover {
+    color: var(--primary-color);
+}

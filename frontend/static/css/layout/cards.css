@@ -1,0 +1,28 @@
+/* ===== css/layout/cards.css ===== */
+.card {
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.card--auth {
+    max-width: 1100px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: var(--panel-min-height);
+}
+
+@media (max-width: 768px) {
+    .card--auth {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+}

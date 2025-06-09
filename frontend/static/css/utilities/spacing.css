@@ -1,0 +1,13 @@
+/* ===== css/utilities/spacing.css ===== */
+.u-margin-bottom-xs { margin-bottom: var(--spacing-xs); }
+.u-margin-bottom-sm { margin-bottom: var(--spacing-sm); }
+.u-margin-bottom-md { margin-bottom: var(--spacing-md); }
+.u-margin-bottom-lg { margin-bottom: var(--spacing-lg); }
+.u-margin-bottom-xl { margin-bottom: var(--spacing-xl); }
+
+.u-padding-xs { padding: var(--spacing-xs); }
+.u-padding-sm { padding: var(--spacing-sm); }
+.u-padding-md { padding: var(--spacing-md); }
+.u-padding-lg { padding: var(--spacing-lg); }
+.u-padding-xl { padding: var(--spacing-xl); }
+

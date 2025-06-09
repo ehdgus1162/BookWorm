@@ -1,0 +1,50 @@
+/* ===== css/base/variables.css ===== */
+:root {
+    /* 색상 시스템 */
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --accent-color: #f5f5f5;
+    --text-primary: #000000;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: #e0e0e0;
+
+    /* 크기 시스템 */
+    --border-radius: 16px;
+    --border-radius-sm: 8px;
+    --border-radius-lg: 25px;
+
+    /* 그림자 시스템 */
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+    /* 애니메이션 */
+    --transition: all 0.3s ease;
+    --transition-fast: all 0.15s ease;
+    --transition-slow: all 0.6s ease;
+
+    /* 컴포넌트별 변수 */
+    --panel-padding: 4rem;
+    --panel-padding-mobile: 2rem;
+    --panel-min-height: 700px;
+
+    /* 폰트 시스템 */
+    --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 3.5rem;
+
+    /* 간격 시스템 */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+}
